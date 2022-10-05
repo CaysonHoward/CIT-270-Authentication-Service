@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 app.listen(port, async ()=> {
     await redisClient.connect();
-    console.log('listening on port '+port)
+    console.log('listening on port '+port);
 });
 
 app.get('/', (req,res)=>{
