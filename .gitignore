@@ -1,1 +1,6 @@
+node_modulesserver.cert
+server.key
+chain.pem
 node_modules
+server.cert
+public/
