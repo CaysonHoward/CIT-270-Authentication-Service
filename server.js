@@ -23,8 +23,12 @@ https.createServer({
     // passphrase: 'P@ssw0rd'
 
 }, app).listen(port, async () => {
-    await redisClient.connect();
-    console.log('Listening...')
+    try{
+        await redisClient.connect();
+        console.log('Listening...')}
+    catch(error){
+        console.log(error);
+    }
 });
 
 // app.listen(port, async ()=> {
