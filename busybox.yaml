@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox-caysonhoward
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: busybox-caysonhoward
+  template:
+    metadata:
+      name: busybox-caysonhoward
+      labels:
+        app: busybox-caysonhoward
+    spec:
+      containers:
+      - name: busybox-caysonhoward
+        image: crayonshadow/cit-270
+        volumeMounts:
+        - name: ssl
+          mountPath: "/usr/src/app/ssl"
+        command: ["npm"]
+        args: ["run", "start"]
+        resources:
+          requests:
+            cpu: 0.125
+            memory: 500Mi
+          limits:
+            cpu: 0.125
+            memory: 600Mi
+        imagePullPolicy: Always
+      volumes:
+      - name: ssl
+        secret: 
+          secretName: caysonssl.secret
