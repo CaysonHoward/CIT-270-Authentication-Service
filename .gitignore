@@ -2,5 +2,5 @@ node_modulesserver.cert
 server.key
 chain.pem
 node_modules
-server.cert
+server.crt
 public/

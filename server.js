@@ -9,7 +9,7 @@ const {createClient} = require('redis');
 const md5 = require('md5');
 const redisClient = createClient(
     {
-    url:'redis://default@35.239.252.156:6379'
+    url:`redis://default:${process.env.REDIS_PASS}@redis-stedi-cayson:6379`
     }
 );
 

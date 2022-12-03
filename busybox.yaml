@@ -22,6 +22,12 @@ spec:
           mountPath: "/usr/src/app/ssl"
         command: ["npm"]
         args: ["run", "start"]
+        env:
+          - name: REDIS_PASS
+            valueFrom:
+              secretKeyRef:
+                name: redis-secrets-cayson
+                key: REDIS_PASS
         resources:
           requests:
             cpu: 0.125
@@ -34,3 +40,15 @@ spec:
       - name: ssl
         secret: 
           secretName: caysonssl.secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadbalancer-caysonhoward
+spec:
+  selector:
+    app: busybox-caysonhoward
+  type: LoadBalancer
+  ports:
+  - port: 443
+    targetPort: 443
